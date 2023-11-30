@@ -1,0 +1,214 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Empêche le défilement de la page */
+    height: 100%;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url("../../Background/background_forest.webp") no-repeat center center;
+    background-size: cover;
+    /* Cette propriété assure que l'image couvre tout le conteneur */
+    overflow: hidden;
+    /* Cache les éléments hors du conteneur */
+}
+
+#player {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 256px;
+    height: 256px;
+}
+
+#enemies {
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+
+#attack-range-indicator {
+    position: absolute;
+    height: 2px;
+    /* Epaisseur de la ligne */
+    background-color: red;
+    /* Couleur de la ligne */
+    width: 0;
+    /* On va le définir dynamiquement dans le JS */
+    top: 50%;
+    /* Ajustez cela pour qu'il soit aligné avec le joueur */
+    transform: translateY(-50%);
+    /* Centre la ligne verticalement */
+    left: 0;
+    /* Position de départ, qui sera mise à jour par le JS */
+    transition: width 0.2s;
+    /* Transition pour montrer la portée s'étendant/revenant */
+}
+
+#lives-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.jauge {
+    width: 128px;
+    height: 128px;
+    background-size: 128px 128px !important;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: url(../../Jauge/jauge_0.png ) ;
+}
+
+.life {
+    width: 32px;
+    /* ou la taille que vous voulez pour vos cœurs */
+    height: auto;
+    margin-left: 4px;
+}
+.enemy {
+    position: absolute;
+    width: 128px;
+    /* Largeur de l'ennemi */
+    height: 128px;
+    /* Hauteur de l'ennemi */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    animation: play 1s steps(4) infinite;
+}
+
+@keyframes play {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -512px;
+    }
+}
+@keyframes neutral {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -512px;
+    }
+}
+@keyframes attack {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -1792px;
+    }
+}
+@keyframes switch {
+    from {
+        background-position: 0px;
+    }
+
+    to {
+        background-position: -1280px;
+    }
+}
+.player_right_neutral {
+    background: url('../../Normal/movement_right.png') ; 
+    background-repeat: no-repeat;
+    background-size: cover; 
+    animation: neutral 1s steps(2) infinite; 
+}
+.player_left_neutral {
+    background: url('../../Normal/movement_left.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: neutral 1s steps(2) infinite;
+}
+.player_left_attack {
+    background: url('../../Normal/attack_left.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: attack 0.6s steps(7) infinite;
+}
+.player_right_attack {
+    background: url('../../Normal/attack_right.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: attack 0.6s steps(7) infinite;
+}
+.player_switch_right_to_left {
+    background: url('../../Normal/turn_right-to-left.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: switch 0.6s steps(5) infinite;
+}
+.player_switch_left_to_right {
+    background: url('../../Normal/turn_left-to-right.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: switch 0.6s steps(5) infinite;
+}
+/* 
+red player  */
+
+
+.redplayer .player_right_neutral {
+    background: url('../../Special/movement_right.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: neutral 1s steps(2) infinite;
+}
+
+.redplayer .player_left_neutral {
+    background: url('../../Special/movement_left.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: neutral 1s steps(2) infinite;
+}
+
+.redplayer .player_left_attack {
+    background: url('../../Special/special_attack_left.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: attack 0.6s steps(7) infinite;
+}
+
+.redplayer .player_right_attack {
+    background: url('../../Special/special_attack_right.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: attack 0.6s steps(7) infinite;
+}
+
+.redplayer .player_switch_right_to_left {
+    background: url('../../Special/special_turn_right-to-left.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: switch 0.6s steps(5) infinite;
+}
+
+.redplayer .player_switch_left_to_right {
+    background: url('../../Special/special_turn_left-to-right.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation: switch 0.6s steps(5) infinite;
+}
+#enemy-count{
+    color: white;
+}
+
+#enemy-counter{
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    color: white;
+}

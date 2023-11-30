@@ -11,7 +11,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url("../../Background/background_castle.webp") no-repeat center center;
+    background: url("../../Background/background_dungeon.webp") no-repeat center center;
     background-size: cover;
     /* Cette propriété assure que l'image couvre tout le conteneur */
     overflow: hidden;
@@ -20,7 +20,7 @@ body {
 
 #player {
     position: absolute;
-    bottom: 125px;
+    bottom: 55px;
     left: 50%;
     transform: translateX(-50%);
     width: 256px;
