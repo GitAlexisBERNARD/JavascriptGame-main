@@ -16,7 +16,7 @@ let isInvincible = false; // Indicateur d'invincibilité
 let currentDirection = -1; // -1 pour droite, 1 pour gauche
 let enemyCount = 0; // Compteur d'ennemis tués
 let specialAttackActive = false; // Indique si le coup spécial est actif
-let jaugeValue = 0; // Valeur actuelle de la jauge
+let jaugeValue = 1; // Valeur actuelle de la jauge
 
 
 document.addEventListener('keydown', function(event) {
@@ -97,7 +97,7 @@ function findAndAttackClosestEnemy(direction) {
 
 function updateSpecialAttackBar() {
   const jauge = document.getElementById('jauge'); // Assurez-vous d'avoir cet élément dans votre HTML
-  jauge.style.backgroundImage = `url('/jauge/jauge_${jaugeValue -1}.png')`; // Assurez-vous que les noms des fichiers sont corrects
+  jauge.style.backgroundImage = `url('../../Jauge/jauge_${jaugeValue -1}.png')`; // Assurez-vous que les noms des fichiers sont corrects
 }
 
 let tt;
@@ -127,9 +127,9 @@ function spawnEnemy() {
 
   // Appliquer le sprite approprié en fonction de la direction
   if (isLeft) {
-    enemy.style.backgroundImage = "url('enemy-left.png')";
+    enemy.style.backgroundImage = "url('../../Enemy/Bat/enemy-left.png')";
   } else {
-    enemy.style.backgroundImage = "url('enemy-right.png')";
+    enemy.style.backgroundImage = "url('../../Enemy/Bat/enemy-right.png')";
   }
 
   gameContainer.appendChild(enemy);
@@ -166,9 +166,9 @@ function resetGame() {
   // Réinitialiser les vies visuellement
   const livesContainer = document.getElementById('lives-container');
   livesContainer.innerHTML = `
-    <img src="heart.png" class="life" />
-    <img src="heart.png" class="life" />
-    <img src="heart.png" class="life" />
+    <img src="../../UI/heart.png" class="life" />
+    <img src="../../UI/heart.png" class="life" />
+    <img src="../../UI/heart.png" class="life" />
   `;
   lives = 3;
   // autre logique de réinitialisation du jeu

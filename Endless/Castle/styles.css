@@ -11,7 +11,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url("background_village.webp") no-repeat center center;
+    background: url("../../Background/background_castle.webp") no-repeat center center;
     background-size: cover;
     /* Cette propriété assure que l'image couvre tout le conteneur */
     overflow: hidden;
@@ -20,7 +20,7 @@ body {
 
 #player {
     position: absolute;
-    bottom: 50px;
+    bottom: 125px;
     left: 50%;
     transform: translateX(-50%);
     width: 256px;
@@ -64,7 +64,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: url(/jauge/jauge_0.png) ;
+    background: url(../../Jauge/jauge_0.png ) ;
 }
 
 .life {
@@ -79,7 +79,6 @@ body {
     /* Largeur de l'ennemi */
     height: 128px;
     /* Hauteur de l'ennemi */
-    background: url("monstre1.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
@@ -123,37 +122,37 @@ body {
     }
 }
 .player_right_neutral {
-    background: url('movement_right.png') ; 
+    background: url('../../Normal/movement_right.png') ; 
     background-repeat: no-repeat;
     background-size: cover; 
     animation: neutral 1s steps(2) infinite; 
 }
 .player_left_neutral {
-    background: url('movement_left.png');
+    background: url('../../Normal/movement_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
 .player_left_attack {
-    background: url('attack_left.png');
+    background: url('../../Normal/attack_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 .player_right_attack {
-    background: url('attack_right.png');
+    background: url('../../Normal/attack_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 .player_switch_right_to_left {
-    background: url('turn_right-to-left.png');
+    background: url('../../Normal/turn_right-to-left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
 .player_switch_left_to_right {
-    background: url('turn_left-to-right.png');
+    background: url('../../Normal/turn_left-to-right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
@@ -163,42 +162,42 @@ red player  */
 
 
 .redplayer .player_right_neutral {
-    background: url('special/movement_right.png');
+    background: url('../../Special/movement_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
 
 .redplayer .player_left_neutral {
-    background: url('special/movement_left.png');
+    background: url('../../Special/movement_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
 
 .redplayer .player_left_attack {
-    background: url('special/special_attack_left.png');
+    background: url('../../Special/special_attack_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 
 .redplayer .player_right_attack {
-    background: url('special/special_attack_right.png');
+    background: url('../../Special/special_attack_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 
 .redplayer .player_switch_right_to_left {
-    background: url('/special/special_turn_right-to-left.png');
+    background: url('../../Special/special_turn_right-to-left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
 
 .redplayer .player_switch_left_to_right {
-    background: url('/special/special_turn_left-to-right.png');
+    background: url('../../Special/special_turn_left-to-right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
