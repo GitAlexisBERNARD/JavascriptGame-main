@@ -4,7 +4,7 @@ img {
 }
 
 .background-main {
-    background: url(../../../public/img/background_main.webp) no-repeat center center fixed;
+    background: url(../../../public/img/UI/background_main.webp) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -12,7 +12,7 @@ img {
 }
 
 .background-castle {
-    background: url(../../../public/img/background_castle.webp) no-repeat center center fixed;
+    background: url(../../../public/img/UI/background_castle.webp) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -20,7 +20,7 @@ img {
 }
 
 .background-village {
-    background: url(../../../public/img/background_village.webp) no-repeat center center fixed;
+    background: url(../../../public/img/UI/background_village.webp) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -28,7 +28,7 @@ img {
 }
 
 .background-forest {
-    background: url(../../../public/img/background_forest.webp) no-repeat center center fixed;
+    background: url(../../../public/img/UI/background_forest.webp) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -36,7 +36,7 @@ img {
 }
 
 .background-endless {
-    background: url(../../../public/img/background_dungeon.webp) no-repeat center center fixed;
+    background: url(../../../public/img/UI/background_dungeon.webp) no-repeat center center fixed;
     background-size: cover;
     -webkit-background-size: cover;
     -moz-background-size: cover;

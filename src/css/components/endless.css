@@ -11,7 +11,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url("../public/img/UI/background_dungeon.webp") no-repeat center center;
+    background: url("../../public/img/UI/background_dungeon.webp") no-repeat center center;
     background-size: cover;
     /* Cette propriété assure que l'image couvre tout le conteneur */
     overflow: hidden;
@@ -64,7 +64,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: url(../public/img/Jauge/jauge_0.png ) ;
+    background: url('../../public/img/Jauge/jauge_0.png') ;
 }
 
 .life {
@@ -122,37 +122,37 @@ body {
     }
 }
 .player_right_neutral {
-    background: url('../public/img/Normal/movement_right.png') ; 
+    background: url('../../public/img/Normal/movement_right.png') ; 
     background-repeat: no-repeat;
     background-size: cover; 
     animation: neutral 1s steps(2) infinite; 
 }
 .player_left_neutral {
-    background: url('../public/img/movement_left.png');
+    background: url('../../public/img/movement_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
 .player_left_attack {
-    background: url('../public/img/attack_left.png');
+    background: url('../../public/img/attack_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 .player_right_attack {
-    background: url('../public/img/attack_right.png');
+    background: url('../../public/img/attack_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 .player_switch_right_to_left {
-    background: url('../public/img/turn_right-to-left.png');
+    background: url('../../public/img/turn_right-to-left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
 .player_switch_left_to_right {
-    background: url('../public/img/turn_left-to-right.png');
+    background: url('../../public/img/turn_left-to-right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
@@ -162,42 +162,42 @@ red player  */
 
 
 .redplayer .player_right_neutral {
-    background: url('../public/img/Special/movement_right.png');
+    background: url('../../public/img/Special/movement_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
 
 .redplayer .player_left_neutral {
-    background: url('../public/img/Special/movement_left.png');
+    background: url('../../public/img/Special/movement_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
 
 .redplayer .player_left_attack {
-    background: url('../public/img/Special/special_attack_left.png');
+    background: url('../../public/img/Special/special_attack_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 
 .redplayer .player_right_attack {
-    background: url('../public/img/Special/special_attack_right.png');
+    background: url('../../public/img/Special/special_attack_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
 
 .redplayer .player_switch_right_to_left {
-    background: url('../public/img/Special/special_turn_right-to-left.png');
+    background: url('../../public/img/Special/special_turn_right-to-left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
 
 .redplayer .player_switch_left_to_right {
-    background: url('../public/img/Special/special_turn_left-to-right.png');
+    background: url('../../public/img/Special/special_turn_left-to-right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;

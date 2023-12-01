@@ -97,7 +97,7 @@ function findAndAttackClosestEnemy(direction) {
 
 function updateSpecialAttackBar() {
   const jauge = document.getElementById('jauge'); // Assurez-vous d'avoir cet élément dans votre HTML
-  jauge.style.backgroundImage = `url('../../Jauge/jauge_${jaugeValue -1}.png')`; // Assurez-vous que les noms des fichiers sont corrects
+  jauge.style.backgroundImage = `url('../public/img/Jauge/jauge_${jaugeValue -1}.png')`; // Assurez-vous que les noms des fichiers sont corrects
 }
 
 let tt;
@@ -127,9 +127,9 @@ function spawnEnemy() {
 
   // Appliquer le sprite approprié en fonction de la direction
   if (isLeft) {
-    enemy.style.backgroundImage = "url('../../Enemy/Bat/enemy-left.png')";
+    enemy.style.backgroundImage = "url('../public/img/Enemy/Bat/enemy-left.png')";
   } else {
-    enemy.style.backgroundImage = "url('../../Enemy/Bat/enemy-right.png')";
+    enemy.style.backgroundImage = "url('../public/img/Enemy/Bat/enemy-right.png')";
   }
 
   gameContainer.appendChild(enemy);
@@ -166,9 +166,9 @@ function resetGame() {
   // Réinitialiser les vies visuellement
   const livesContainer = document.getElementById('lives-container');
   livesContainer.innerHTML = `
-    <img src="../../UI/heart.png" class="life" />
-    <img src="../../UI/heart.png" class="life" />
-    <img src="../../UI/heart.png" class="life" />
+    <img src="../public/img/UI/heart.png" class="life" />
+    <img src="../public/img/UI/heart.png" class="life" />
+    <img src="../public/img/UI/heart.png" class="life" />
   `;
   lives = 3;
   // autre logique de réinitialisation du jeu
