@@ -67,37 +67,45 @@ function findAndAttackClosestEnemy(direction) {
   }
 
   if (closestEnemy) {
-    const teleportOffset = 100; // La distance avant l'ennemi où le joueur apparaîtra
-    isAttacking = true;
-    playerPosition = closestEnemy.xPosition + (direction * teleportOffset);
-    player.style.left = `${playerPosition}px`;
+    // Réduire les points de vie de l'ennemi
+    closestEnemy.hp -= 1;
 
-    // Supprimer l'ennemi du DOM et du tableau
-    closestEnemy.element.remove();
-    enemyCount++;
-    document.getElementById('enemy-count').textContent = enemyCount; // Mettre à jour l'élément dans le HTML
+    // Si l'ennemi est vaincu
+    if (closestEnemy.hp <= 0) {
+      // Supprimer l'ennemi du DOM et du tableau
+      closestEnemy.element.remove();
+      enemies.splice(enemies.indexOf(closestEnemy), 1);
 
-    console.log(jaugeValue);
-    if (!specialAttackActive) {
+      // Mise à jour des compteurs et des jauges
+      enemyCount++;
+      document.getElementById('enemy-count').textContent = enemyCount;
+      updateSpecialAttackBar();
+    } else {
+      // Si l'ennemi est un samurai et toujours en vie, mettre à jour son sprite
+      if (closestEnemy.type === 'samurai') {
+        closestEnemy.element.style.backgroundImage = `url('../../Enemy/samurai/enemy-weakened-${closestEnemy.direction === 1 ? 'left' : 'right'}.png')`;
+      }
+    }
+
+    // Mise à jour des états d'attaque et de la jauge spéciale
+    isAttacking = false;
+    if (!specialAttackActive && jaugeValue < 17) {
       jaugeValue++;
+      if (jaugeValue === 17) {
+        activateSpecialAttack();
+      }
     }
-    if (jaugeValue == 17) {
-      activateSpecialAttack();
-       // Réinitialiser le compteur d'ennemis tués
-       // Réinitialiser la jauge
-    }
-    updateSpecialAttackBar();
-    enemies.splice(enemies.indexOf(closestEnemy), 1);
-
-    setTimeout(() => {
-      isAttacking = false;
-    }, 100); // Durée pour terminer l'état d'attaque
   }
 }
 
 function updateSpecialAttackBar() {
   const jauge = document.getElementById('jauge'); // Assurez-vous d'avoir cet élément dans votre HTML
   jauge.style.backgroundImage = `url('../../Jauge/jauge_${jaugeValue -1}.png')`; // Assurez-vous que les noms des fichiers sont corrects
+}
+
+function getRandomEnemyType() {
+  const enemyTypes = ['bat', 'ghost', 'samurai'];
+  return enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
 }
 
 let tt;
@@ -117,27 +125,40 @@ function activateSpecialAttack() {
 }
 }
 
-function spawnEnemy() {
-  const enemy = document.createElement('div');
-  enemy.classList.add('enemy');
+function attackEnemy(enemy) {
+  enemy.hp--;
+  if (enemy.hp <= 0) {
+    // Ennemi vaincu
+    enemy.element.remove();
+    enemies.splice(enemies.indexOf(enemy), 1);
+  } else {
+    // Mettre à jour le sprite pour l'état affaibli si nécessaire
+    if (enemy.type === 'samurai') {
+      enemy.element.style.backgroundImage = `url('../../Enemy/${enemy.type}/enemy-weakened-${enemy.direction === 1 ? 'left' : 'right'}.png')`;
+    }
+  }
+}
 
+function spawnEnemy() {
+  const type = getRandomEnemyType();
   const isLeft = Math.random() < 0.5;
+  const enemy = document.createElement('div');
+  enemy.classList.add('enemy', type);
+
   enemy.style.left = isLeft ? '-30px' : `${gameContainer.offsetWidth}px`;
   enemy.style.top = `${player.offsetTop}px`;
+  enemy.style.backgroundImage = `url('../../Enemy/${type}/enemy-${isLeft ? 'left' : 'right'}.png')`;
 
-  // Appliquer le sprite approprié en fonction de la direction
-  if (isLeft) {
-    enemy.style.backgroundImage = "url('../../Enemy/Bat/enemy-left.png')";
-  } else {
-    enemy.style.backgroundImage = "url('../../Enemy/Bat/enemy-right.png')";
-  }
+  const hp = (type === 'samurai') ? 2 : 1; // Les samurais ont 2 HP, les autres 1 HP
 
   gameContainer.appendChild(enemy);
 
   enemies.push({
     element: enemy,
     xPosition: parseInt(enemy.style.left, 10),
-    direction: isLeft ? 1 : -1
+    direction: isLeft ? 1 : -1,
+    type: type,
+    hp: hp // Points de vie
   });
 }
 
@@ -194,16 +215,24 @@ function removeLife() {
   }
 }
 function gameOver() {
-  alert('Game Over!');
-  // votre logique de fin de jeu
-  resetGame();
+  window.location.href = 'score.html'; 
+}
+
+function getSpawnProbability() {
+
+  let baseProbability = 0.005; // Probabilité de départ
+  let increasePerKill = 0.0005; // Augmentation de la probabilité par ennemi tué
+  let maxProbability = 0.05; // Probabilité maximale de 5%
+
+  let currentProbability = baseProbability + (enemyCount * increasePerKill);
+  return Math.min(currentProbability, maxProbability);
 }
 
 function gameLoop() {
   updateEnemies();
   
   // Générer des ennemis de façon aléatoire
-  if (Math.random() < 0.02) { // Ajustez ce nombre pour changer la fréquence d'apparition des ennemis
+  if (Math.random() < getSpawnProbability()) {
     spawnEnemy();
   }
   requestAnimationFrame(gameLoop);
