@@ -1,14 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Samurai Chronicles, a blend of japanese and fantasy arcade game.">
+    <title>Samurai Chronicles</title>
+    <link rel="stylesheet" href="../src/css/styles.css">
+    <link rel="icon" href="public/icones/logo.svg">
     <script src='main.js'></script>
 </head>
-<body>
-    <a href="Castle/index.html"><h4>Village Stage</h4></a>
+
+<body class="background-endless">
+    <div id="game-container">
+        <div id="player" class="player_right_neutral"></div>
+        <div id="enemies"></div>
+        <div id="jauge" class="jauge"></div>
+        <div id="enemy-counter">Ennemis vaincus : <span id="enemy-count">0</span></div>
+        <div id="lives-container">
+            <img src="../public/img/UI/heart.png" class="life" />
+            <img src="../public/img/UI/heart.png" class="life" />
+            <img src="../public/img/UI/heart.png" class="life" />
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
+
 </html>

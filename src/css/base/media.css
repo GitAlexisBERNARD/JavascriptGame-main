@@ -1,0 +1,45 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+.background-main {
+    background: url(../../../public/img/background_main.webp) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.background-castle {
+    background: url(../../../public/img/background_castle.webp) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.background-village {
+    background: url(../../../public/img/background_village.webp) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.background-forest {
+    background: url(../../../public/img/background_forest.webp) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+.background-endless {
+    background: url(../../../public/img/background_dungeon.webp) no-repeat center center fixed;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
