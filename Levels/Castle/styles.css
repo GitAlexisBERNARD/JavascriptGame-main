@@ -31,23 +31,28 @@ body {
     top: 0;
 }
 
-
-#attack-range-indicator {
+#attack-range-bar {
+    width: 512px;
+    /* ou une largeur spécifique */
+    height: 100px;
+    /* Hauteur de la barre */
+    background-image: url('../../UI/range_768.png');
+    background-repeat: no-repeat;
+    background-size: fit;
+    /* Chemin vers votre image */
     position: absolute;
-    height: 2px;
-    /* Epaisseur de la ligne */
-    background-color: red;
-    /* Couleur de la ligne */
-    width: 0;
-    /* On va le définir dynamiquement dans le JS */
-    top: 50%;
-    /* Ajustez cela pour qu'il soit aligné avec le joueur */
-    transform: translateY(-50%);
-    /* Centre la ligne verticalement */
+    bottom: -20px;
     left: 0;
-    /* Position de départ, qui sera mise à jour par le JS */
-    transition: width 0.2s;
-    /* Transition pour montrer la portée s'étendant/revenant */
+}
+#attack-range-bar.special-attack-range {
+    width: 709px;
+    height: 100px;
+    background-image: url('../../UI/range_1024.png');
+    background-repeat: no-repeat;
+    background-size: fit;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
 }
 
 #lives-container {
