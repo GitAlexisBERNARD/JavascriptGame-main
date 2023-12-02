@@ -9,7 +9,7 @@ let playerPosition = gameContainer.offsetWidth / 2; // Commence au milieu de l'�
 const playerSpeed = 5; // Vitesse du déplacement du joueur
 const enemySpeed = 1; // Vitesse à laquelle les ennemis s'approchent
 let attackRange = 320; // Distance à laquelle les ennemis attaquent le joueur
-let isAttacking = false; // variable pour suivre si le joueur est en train d'attaquer   
+let isAttacking = false; // variable pour suivre si le joueur est en train d'attaquer
 let enemies = []; // Tableau pour stocker les ennemis
 let lives = 3; // le joueur commence avec 3 vies
 let isInvincible = false; // Indicateur d'invincibilité
@@ -44,7 +44,7 @@ document.addEventListener('keydown', function(event) {
 
 function triggerAttack(direction) {
   player.className = direction === 1 ? 'player_left_attack' : 'player_right_attack';
-  
+
   findAndAttackClosestEnemy(direction);
 
   setTimeout(() => {
@@ -123,7 +123,7 @@ let tt;
 function activateSpecialAttack() {
   specialAttackActive = true;
   let pp = document.getElementById('game-container');
-  pp.classList.add('redplayer'); 
+  pp.classList.add('redplayer');
 const attackRangeBar = document.getElementById('attack-range-bar');
     attackRangeBar.classList.add('special-attack-range');
   console.log('Special attack activated!');
@@ -152,6 +152,8 @@ function spawnEnemy(type, direction) {
   enemy.style.backgroundImage = `url('../../Enemy/${type}/enemy-${direction}.png')`;
 
   // Si l'ennemi est un type spécifique, ajuster sa position verticale
+  const screenWidth = window.innerWidth;
+
   if (type === 'bat') {
     enemy.style.top = '530px';
   }
@@ -228,25 +230,25 @@ function removeLife() {
 function updateAttackRangeBar() {
     const attackRangeBar = document.getElementById('attack-range-bar');
     if (attackRangeBar) {
-        const leftOffset = 125; 
+        const leftOffset = 125;
         const newPosition = player.offsetLeft + player.offsetWidth / 2 - attackRangeBar.offsetWidth / 2 - leftOffset;
         attackRangeBar.style.left = `${newPosition}px`;
     }
 }
 
 function gameOver() {
-  window.location.href = 'dead.html'; 
+  window.location.href = 'dead.html';
 }
 
 function gameLoop() {
   updateEnemies();
-  
-  updateAttackRangeBar();
+
+
 
   if (gameStarted && enemies.length === 0) {
-    window.location.href = 'end.html'; 
+    window.location.href = 'end.html';
   }
-
+ updateAttackRangeBar();
   requestAnimationFrame(gameLoop);
 }
 
