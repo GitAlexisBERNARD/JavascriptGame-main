@@ -2,7 +2,7 @@
 const player = document.getElementById('player');
 const gameContainer = document.getElementById('game-container');
 const attackRangeIndicator = document.getElementById('attack-range-indicator');
-
+const screenWidth = window.innerWidth;
 
 // Variables contrôler le jeu
 let playerPosition = gameContainer.offsetWidth / 2; // Commence au milieu de l'écran
@@ -152,7 +152,7 @@ function spawnEnemy(type, direction) {
   enemy.style.backgroundImage = `url('../../Enemy/${type}/enemy-${direction}.png')`;
 
   // Si l'ennemi est un type spécifique, ajuster sa position verticale
-  const screenWidth = window.innerWidth;
+  
 
   if (type === 'bat') {
     enemy.style.top = '530px';
@@ -251,9 +251,24 @@ function gameLoop() {
  updateAttackRangeBar();
   requestAnimationFrame(gameLoop);
 }
+function enterFullScreen() {
+  if (document.documentElement.requestFullscreen) {
+    document.documentElement.requestFullscreen();
+  } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
+    document.documentElement.mozRequestFullScreen();
+  } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+    document.documentElement.webkitRequestFullscreen();
+  } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
+    document.documentElement.msRequestFullscreen();
+  }
+}
 
 // Fonction pour initialiser les ennemis du niveau
 function startLevel() {
+  if (screenWidth < 500) {
+    enterFullScreen();
+  }
+  
   level.forEach(enemy => {
     setTimeout(() => {
       spawnEnemy(enemy.type, enemy.direction);
