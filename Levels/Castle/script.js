@@ -155,7 +155,11 @@ function spawnEnemy(type, direction) {
   
 
   if (type === 'bat') {
-    enemy.style.top = '530px';
+    if (screenWidth < 768) { // Exemple de condition pour un écran plus petit
+      enemy.style.top = '330px'; // Position ajustée pour les petits écrans
+    } else {
+      enemy.style.top = '530px'; // Position pour les écrans plus grands
+    }
   }
   if (type === 'samurai') {
     enemy.style.top = '600px';
@@ -251,24 +255,9 @@ function gameLoop() {
  updateAttackRangeBar();
   requestAnimationFrame(gameLoop);
 }
-function enterFullScreen() {
-  if (document.documentElement.requestFullscreen) {
-    document.documentElement.requestFullscreen();
-  } else if (document.documentElement.mozRequestFullScreen) { /* Firefox */
-    document.documentElement.mozRequestFullScreen();
-  } else if (document.documentElement.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
-    document.documentElement.webkitRequestFullscreen();
-  } else if (document.documentElement.msRequestFullscreen) { /* IE/Edge */
-    document.documentElement.msRequestFullscreen();
-  }
-}
 
 // Fonction pour initialiser les ennemis du niveau
 function startLevel() {
-  if (screenWidth < 500) {
-    enterFullScreen();
-  }
-  
   level.forEach(enemy => {
     setTimeout(() => {
       spawnEnemy(enemy.type, enemy.direction);
