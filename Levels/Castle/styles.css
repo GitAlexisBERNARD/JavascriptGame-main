@@ -14,8 +14,34 @@ body {
     background: url("../../Background/background_castle.webp");background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;
+    z-index: 10;
 }
 
+.game-button {
+    visibility: hidden;
+    width: 500px;
+    height: 400px;
+        background-repeat: no-repeat !important;
+        background-size: contain !important;
+        position: absolute;
+        bottom: -100px;
+}
+
+@media screen and (max-width: 3500px) {
+    .game-button {
+            visibility: visible;
+    }
+}
+
+#left-button {
+    left: 20px;
+    background: url('../../UI/UI_sword_left.png');
+}
+
+#right-button {
+    right: 20px;
+    background: url('../../UI/UI_sword_right.png');
+}
 
 #player {
     position: absolute;

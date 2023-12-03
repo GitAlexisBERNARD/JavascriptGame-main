@@ -231,6 +231,30 @@ function removeLife() {
     }
   }
 }
+const leftButton = document.getElementById('left-button');
+const rightButton = document.getElementById('right-button');
+
+leftButton.addEventListener('touchstart', () => triggerArrowKey('ArrowLeft'));
+rightButton.addEventListener('touchstart', () => triggerArrowKey('ArrowRight'));
+
+function triggerArrowKey(key) {
+    if (!isAttacking) {
+        isAttacking = true; // Empêcher de nouvelles attaques
+        const newDirection = (key === "ArrowLeft") ? 1 : -1;
+
+        if (currentDirection !== newDirection) {
+            player.className = newDirection === 1 ? 'player_switch_right_to_left' : 'player_switch_left_to_right';
+            setTimeout(() => {
+                triggerAttack(newDirection);
+            }, 600); // Durée de l'animation de rotation
+        } else {
+            triggerAttack(newDirection);
+        }
+
+        currentDirection = newDirection;
+    }
+}
+
 function updateAttackRangeBar() {
     const attackRangeBar = document.getElementById('attack-range-bar');
     if (attackRangeBar) {
