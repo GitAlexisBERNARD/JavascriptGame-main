@@ -11,7 +11,7 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url("../../Background/background_village.webp") no-repeat center center;
+    background: url("../../Background/background_village2.webp") no-repeat center center;
     background-size: cover;
     /* Cette propriété assure que l'image couvre tout le conteneur */
     overflow: hidden;
@@ -27,7 +27,7 @@ body {
     bottom: -100px;
 }
 
-@media screen and (max-width: 3500px) {
+@media screen and (max-width: 2560px) {
     .game-button {
         visibility: visible;
     }
@@ -246,13 +246,3 @@ red player  */
     animation: switch 0.6s steps(5) infinite;
 }
 
-#enemy-count {
-    color: white;
-}
-
-#enemy-counter {
-    position: absolute;
-    top: 20px;
-    left: 150px;
-    color: white;
-}

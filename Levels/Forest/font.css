@@ -1,0 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+#enemy-count {
+    color: white;
+    font-family: "VT323", monospace;
+    font-size: 2rem;
+}
+
+#enemy-counter {
+    position: absolute;
+    top: 20px;
+    left: 150px;
+    color: white;
+    font-family: "VT323", monospace;
+    font-size: 2rem;
+}

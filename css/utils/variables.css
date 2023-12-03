@@ -1,0 +1,18 @@
+:root {
+  /* fonts */
+  --font: "VT323", monospace;
+
+  /* Color styles */
+  --black: rgba(0, 0, 0, 1);
+  --white: rgba(255, 255, 255, 1);
+
+  /* Text-size styles */
+  --h1: 6rem;
+  --mh1: 4rem;
+  --h2: 4rem;
+  --mh2: 2rem;
+  --h3: 2rem;
+  --mh3: 1.5rem;
+  --body: 1.5rem;
+  --mbody: 1rem;
+}

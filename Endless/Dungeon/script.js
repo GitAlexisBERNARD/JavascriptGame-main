@@ -11,7 +11,7 @@ const enemySpeed = 1; // Vitesse à laquelle les ennemis s'approchent
 let attackRange = 320; // Distance à laquelle les ennemis attaquent le joueur
 let isAttacking = false; // variable pour suivre si le joueur est en train d'attaquer
 let enemies = []; // Tableau pour stocker les ennemis
-let lives = 300; // le joueur commence avec 3 vies
+let lives = 3; // le joueur commence avec 3 vies
 let isInvincible = false; // Indicateur d'invincibilité
 let currentDirection = -1; // -1 pour droite, 1 pour gauche
 let enemyCount = 0; // Compteur d'ennemis tués
@@ -271,7 +271,7 @@ function updateAttackRangeBar() {
 }
 
 function gameOver() {
-  window.location.href = 'dead.html';
+  window.location.href = 'score.html';
 }
 
 function gameLoop() {
@@ -280,7 +280,7 @@ function gameLoop() {
 
 
   if (gameStarted && enemies.length === 0) {
-    window.location.href = 'end.html';
+    window.location.href = 'score.html';
   }
  updateAttackRangeBar();
   requestAnimationFrame(gameLoop);

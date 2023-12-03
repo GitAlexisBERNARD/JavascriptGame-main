@@ -19,9 +19,22 @@ let specialAttackActive = false; // Indique si le coup spécial est actif
 let jaugeValue = 1; // Valeur actuelle de la jauge
 let gameStarted = false;
 const level = [
-  { type: 'bat', time: 1000, direction: 'left' },
-  { type: 'ghost', time: 3000, direction: 'right' },
-  { type: 'samurai', time: 5000, direction: 'left' },
+  { type: 'bat', time: 600, direction: 'left' },
+  { type: 'ghost', time: 1800, direction: 'right' },
+  { type: 'samurai', time: 3000, direction: 'left' },
+  { type: 'bat', time: 4200, direction: 'right' },
+  { type: 'ghost', time: 5400, direction: 'left' },
+  { type: 'samurai', time: 6600, direction: 'right' },
+  { type: 'bat', time: 7800, direction: 'left' },
+  { type: 'samurai', time: 9000, direction: 'right' },
+  { type: 'bat', time: 10200, direction: 'left' },
+  { type: 'ghost', time: 11800, direction: 'right' },
+  { type: 'samurai', time: 13000, direction: 'left' },
+  { type: 'bat', time: 14200, direction: 'right' },
+  { type: 'ghost', time: 15400, direction: 'left' },
+  { type: 'samurai', time: 16600, direction: 'right' },
+  { type: 'bat', time: 17800, direction: 'left' },
+  { type: 'samurai', time: 19000, direction: 'right' },
 ];
 
 document.addEventListener('keydown', function(event) {

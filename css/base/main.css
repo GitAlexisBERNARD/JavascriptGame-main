@@ -1,0 +1,142 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html {
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font);
+  font-size: var(--body);
+  @media (max-width: 1000px) {
+    font-size: var(--mbody);
+  }
+  color: var(--white);
+  background-color: var(--black);
+  font-weight: 500;
+}
+
+h1 {
+  font-family: var(--font);
+  font-size: var(--h1);
+  @media (max-width: 1000px) {
+    font-size: var(--mh1);
+  }
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-top: 20vh;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-family: var(--font);
+  font-size: var(--h2);
+  @media (max-width: 1000px) {
+    font-size: var(--mh2);
+  }
+  font-weight: 500;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+h3 {
+  font-family: var(--font);
+  font-size: var(--h3);
+  @media (max-width: 1000px) {
+    font-size: var(--mh3);
+  }
+  font-weight: 500;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+button {
+  color: var(--white);
+  background: none;
+  cursor: pointer;
+  padding: 8px 32px;
+  text-align: center;
+  border-radius: 5px;
+  border: 2px solid var(--white);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(10px);
+  display: block;
+  text-shadow: none;
+}
+
+li,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 700;
+}
+
+.btn-play {
+  font-size: var(--h2);
+  @media (max-width: 1000px) {
+    font-size: var(--mh2);
+  }
+  margin: 0 auto;
+}
+
+.btn-small {
+  font-size: var(--body);
+  @media (max-width: 1000px) {
+    font-size: var(--mbody);
+  }
+  margin: 0 auto;
+  width: 100%;
+}
+
+.btn-wrap {
+  margin: 0 auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.mode-wrap {
+  margin: 0 auto;
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 150px;
+  margin-top: 50px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.overflow {
+  overflow: auto;
+  padding-bottom: 50px;
+}
+
+.instructions {
+  padding: 0 10%;
+}
+
+.instructions p,
+ul,
+.credits p,
+ul {
+  padding-bottom: 0.5rem;
+}
+.instructions h2,
+h3,
+.credits h2,
+h3 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

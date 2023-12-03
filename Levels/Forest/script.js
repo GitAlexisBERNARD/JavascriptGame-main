@@ -21,7 +21,14 @@ let gameStarted = false;
 const level = [
   { type: 'bat', time: 1000, direction: 'left' },
   { type: 'ghost', time: 3000, direction: 'right' },
-  { type: 'samurai', time: 5000, direction: 'left' },
+  { type: 'bat', time: 5000, direction: 'left' },
+  { type: 'ghost', time: 7000, direction: 'right' },
+  { type: 'samurai', time: 10000, direction: 'left' },
+  { type: 'bat', time: 12000, direction: 'left' },
+  { type: 'ghost', time: 15000, direction: 'right' },
+  { type: 'bat', time: 18000, direction: 'left' },
+  { type: 'ghost', time: 21000, direction: 'right' },
+  { type: 'samurai', time: 24000, direction: 'left' },
 ];
 
 document.addEventListener('keydown', function(event) {
