@@ -2,14 +2,14 @@
 const player = document.getElementById('player');
 const gameContainer = document.getElementById('game-container');
 const attackRangeIndicator = document.getElementById('attack-range-indicator');
-
+const screenWidth = window.innerWidth;
 
 // Variables contrôler le jeu
 let playerPosition = gameContainer.offsetWidth / 2; // Commence au milieu de l'écran
 const playerSpeed = 5; // Vitesse du déplacement du joueur
 const enemySpeed = 1; // Vitesse à laquelle les ennemis s'approchent
-const attackRange = 400; // Distance à laquelle les ennemis attaquent le joueur
-let isAttacking = false; // variable pour suivre si le joueur est en train d'attaquer   
+let attackRange = 320; // Distance à laquelle les ennemis attaquent le joueur
+let isAttacking = false; // variable pour suivre si le joueur est en train d'attaquer
 let enemies = []; // Tableau pour stocker les ennemis
 let lives = 3; // le joueur commence avec 3 vies
 let isInvincible = false; // Indicateur d'invincibilité
@@ -20,8 +20,8 @@ let jaugeValue = 1; // Valeur actuelle de la jauge
 let gameStarted = false;
 const level = [
   { type: 'bat', time: 1000, direction: 'left' },
-  { type: 'bat', time: 3000, direction: 'right' },
-  { type: 'bat', time: 5000, direction: 'left' },
+  { type: 'ghost', time: 3000, direction: 'right' },
+  { type: 'samurai', time: 5000, direction: 'left' },
 ];
 
 document.addEventListener('keydown', function(event) {
@@ -44,7 +44,7 @@ document.addEventListener('keydown', function(event) {
 
 function triggerAttack(direction) {
   player.className = direction === 1 ? 'player_left_attack' : 'player_right_attack';
-  
+
   findAndAttackClosestEnemy(direction);
 
   setTimeout(() => {
@@ -57,14 +57,22 @@ function findAndAttackClosestEnemy(direction) {
   let closestEnemy = null;
   let closestDistance = Number.MAX_VALUE;
 
-  for (const enemy of enemies) {
-    const distance = Math.abs(enemy.xPosition - playerPosition);
+    for (const enemy of enemies) {
+        const distance = Math.abs(enemy.xPosition - playerPosition);
 
-    if (enemy.direction === direction && distance < closestDistance && distance <= attackRange) {
-      closestEnemy = enemy;
-      closestDistance = distance;
+        // Réduire la portée de l'attaque sur la gauche
+        let isInRange = false;
+        if (direction === -1) { // Attaque vers la gauche
+            isInRange = distance <= (attackRange - 100) && enemy.direction === direction;
+        } else { // Attaque vers la droite
+            isInRange = distance <= attackRange && enemy.direction === direction;
+        }
+
+        if (isInRange && distance < closestDistance) {
+            closestEnemy = enemy;
+            closestDistance = distance;
+        }
     }
-  }
 
   if (closestEnemy) {
     const teleportOffset = 100; // La distance avant l'ennemi où le joueur apparaîtra
@@ -72,7 +80,17 @@ function findAndAttackClosestEnemy(direction) {
     playerPosition = closestEnemy.xPosition + (direction * teleportOffset);
     player.style.left = `${playerPosition}px`;
 
-    // Supprimer l'ennemi du DOM et du tableau
+    if (closestEnemy.type === 'samurai' && closestEnemy.health > 1) {
+      closestEnemy.health--;
+      closestEnemy.isWeakened = true;
+      // Changez le sprite pour afficher l'état affaibli
+      closestEnemy.element.style.backgroundImage = `url('../../Enemy/samurai/enemy-${closestEnemy.direction === 1 ? 'left' : 'right'}-weakened.png')`;
+      setTimeout(() => {
+        isAttacking = false;
+      }, 100); // Durée pour terminer l'état d'attaque
+      return; // Ne pas supprimer l'ennemi et ne pas augmenter le compteur
+    }
+
     closestEnemy.element.remove();
     enemyCount++;
     document.getElementById('enemy-count').textContent = enemyCount; // Mettre à jour l'élément dans le HTML
@@ -83,8 +101,8 @@ function findAndAttackClosestEnemy(direction) {
     }
     if (jaugeValue == 17) {
       activateSpecialAttack();
-       // Réinitialiser le compteur d'ennemis tués
-       // Réinitialiser la jauge
+      // Réinitialiser le compteur d'ennemis tués
+      // Réinitialiser la jauge
     }
     updateSpecialAttackBar();
     enemies.splice(enemies.indexOf(closestEnemy), 1);
@@ -105,11 +123,16 @@ let tt;
 function activateSpecialAttack() {
   specialAttackActive = true;
   let pp = document.getElementById('game-container');
-  pp.classList.add('redplayer'); 
+  pp.classList.add('redplayer');
+const attackRangeBar = document.getElementById('attack-range-bar');
+    attackRangeBar.classList.add('special-attack-range');
   console.log('Special attack activated!');
+  attackRange = 400;
   if (!tt) {
   tt = setTimeout(() => {
     specialAttackActive = false;
+    attackRange = 320;
+    attackRangeBar.classList.remove('special-attack-range');
     pp.classList.remove('redplayer'); // Revenir à la classe normale après l'attaque spéciale
     jaugeValue = 0;// Réinitialiser le compteur d'ennemis tués
     updateSpecialAttackBar(); // Réinitialiser la jauge
@@ -125,28 +148,35 @@ function spawnEnemy(type, direction) {
   enemy.style.left = isLeft ? '-30px' : `${gameContainer.offsetWidth}px`;
   enemy.style.top = `${player.offsetTop}px`;
 
+  // Choisir l'image de fond en fonction du type et de la direction de l'ennemi
   enemy.style.backgroundImage = `url('../../Enemy/${type}/enemy-${direction}.png')`;
 
-  if (type === 'bat') {
-    enemy.style.top = '700px';
-  }
+  // Si l'ennemi est un type spécifique, ajuster sa position verticale
+  
 
   if (type === 'bat') {
-    enemy.style.top = '700px';
+    if (screenWidth < 768) { // Exemple de condition pour un écran plus petit
+      enemy.style.top = '330px'; // Position ajustée pour les petits écrans
+    } else {
+      enemy.style.top = '530px'; // Position pour les écrans plus grands
+    }
   }
-
-  if (type === 'bat') {
-    enemy.style.top = '700px';
+  if (type === 'samurai') {
+    enemy.style.top = '600px';
   }
 
   gameContainer.appendChild(enemy);
 
-  enemies.push({
+  const enemyObject = {
     element: enemy,
     xPosition: parseInt(enemy.style.left, 10),
     direction: isLeft ? 1 : -1,
-    type: type
-  });
+    type: type,
+    health: type === 'samurai' ? 2 : 1, // Les samurais ont 2 points de vie
+    isWeakened: false
+  };
+
+  enemies.push(enemyObject);
 }
 
 function updateEnemies() {
@@ -201,19 +231,52 @@ function removeLife() {
     }
   }
 }
-function gameOver() {
-  window.location.href = 'dead.html'; 
+const leftButton = document.getElementById('left-button');
+const rightButton = document.getElementById('right-button');
+
+leftButton.addEventListener('touchstart', () => triggerArrowKey('ArrowLeft'));
+rightButton.addEventListener('touchstart', () => triggerArrowKey('ArrowRight'));
+
+function triggerArrowKey(key) {
+    if (!isAttacking) {
+        isAttacking = true; // Empêcher de nouvelles attaques
+        const newDirection = (key === "ArrowLeft") ? 1 : -1;
+
+        if (currentDirection !== newDirection) {
+            player.className = newDirection === 1 ? 'player_switch_right_to_left' : 'player_switch_left_to_right';
+            setTimeout(() => {
+                triggerAttack(newDirection);
+            }, 600); // Durée de l'animation de rotation
+        } else {
+            triggerAttack(newDirection);
+        }
+
+        currentDirection = newDirection;
+    }
 }
 
+function updateAttackRangeBar() {
+    const attackRangeBar = document.getElementById('attack-range-bar');
+    if (attackRangeBar) {
+        const leftOffset = 125;
+        const newPosition = player.offsetLeft + player.offsetWidth / 2 - attackRangeBar.offsetWidth / 2 - leftOffset;
+        attackRangeBar.style.left = `${newPosition}px`;
+    }
+}
+
+function gameOver() {
+  window.location.href = 'dead.html';
+}
 
 function gameLoop() {
   updateEnemies();
-  
+
+
 
   if (gameStarted && enemies.length === 0) {
-    window.location.href = 'end.html'; 
+    window.location.href = 'end.html';
   }
-
+ updateAttackRangeBar();
   requestAnimationFrame(gameLoop);
 }
 

@@ -11,16 +11,41 @@ body {
     position: relative;
     width: 100vw;
     height: 100vh;
-    background: url("../../Background/background_dungeon.webp") no-repeat center center;
+    background: url("../../Background/background_village.webp") no-repeat center center;
     background-size: cover;
     /* Cette propriété assure que l'image couvre tout le conteneur */
     overflow: hidden;
     /* Cache les éléments hors du conteneur */
 }
+.game-button {
+    visibility: hidden;
+    width: 500px;
+    height: 400px;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    position: absolute;
+    bottom: -100px;
+}
+
+@media screen and (max-width: 3500px) {
+    .game-button {
+        visibility: visible;
+    }
+}
+
+#left-button {
+    left: 20px;
+    background: url('../../UI/UI_sword_left.png');
+}
+
+#right-button {
+    right: 20px;
+    background: url('../../UI/UI_sword_right.png');
+}
 
 #player {
     position: absolute;
-    bottom: 55px;
+    bottom: 125px;
     left: 50%;
     transform: translateX(-50%);
     width: 256px;
@@ -33,23 +58,29 @@ body {
     top: 0;
 }
 
-
-#attack-range-indicator {
+#attack-range-bar {
+    width: 512px;
+    /* ou une largeur spécifique */
+    height: 100px;
+    /* Hauteur de la barre */
+    background-image: url('../../UI/range_768.png');
+    background-repeat: no-repeat;
+    background-size: fit;
+    /* Chemin vers votre image */
     position: absolute;
-    height: 2px;
-    /* Epaisseur de la ligne */
-    background-color: red;
-    /* Couleur de la ligne */
-    width: 0;
-    /* On va le définir dynamiquement dans le JS */
-    top: 50%;
-    /* Ajustez cela pour qu'il soit aligné avec le joueur */
-    transform: translateY(-50%);
-    /* Centre la ligne verticalement */
+    bottom: -20px;
     left: 0;
-    /* Position de départ, qui sera mise à jour par le JS */
-    transition: width 0.2s;
-    /* Transition pour montrer la portée s'étendant/revenant */
+}
+
+#attack-range-bar.special-attack-range {
+    width: 709px;
+    height: 100px;
+    background-image: url('../../UI/range_1024.png');
+    background-repeat: no-repeat;
+    background-size: fit;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
 }
 
 #lives-container {
@@ -57,6 +88,7 @@ body {
     top: 10px;
     right: 10px;
 }
+
 .jauge {
     width: 128px;
     height: 128px;
@@ -64,7 +96,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    background: url(../../Jauge/jauge_0.png ) ;
+    background: url(../../Jauge/jauge_0.png );
 }
 
 .life {
@@ -73,6 +105,7 @@ body {
     height: auto;
     margin-left: 4px;
 }
+
 .enemy {
     position: absolute;
     width: 128px;
@@ -94,6 +127,7 @@ body {
         background-position: -512px;
     }
 }
+
 @keyframes neutral {
     from {
         background-position: 0px;
@@ -103,6 +137,7 @@ body {
         background-position: -512px;
     }
 }
+
 @keyframes attack {
     from {
         background-position: 0px;
@@ -112,6 +147,7 @@ body {
         background-position: -1792px;
     }
 }
+
 @keyframes switch {
     from {
         background-position: 0px;
@@ -121,42 +157,49 @@ body {
         background-position: -1280px;
     }
 }
+
 .player_right_neutral {
-    background: url('../../Normal/movement_right.png') ; 
+    background: url('../../Normal/movement_right.png');
     background-repeat: no-repeat;
-    background-size: cover; 
-    animation: neutral 1s steps(2) infinite; 
+    background-size: cover;
+    animation: neutral 1s steps(2) infinite;
 }
+
 .player_left_neutral {
     background: url('../../Normal/movement_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: neutral 1s steps(2) infinite;
 }
+
 .player_left_attack {
     background: url('../../Normal/attack_left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
+
 .player_right_attack {
     background: url('../../Normal/attack_right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: attack 0.6s steps(7) infinite;
 }
+
 .player_switch_right_to_left {
     background: url('../../Normal/turn_right-to-left.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
+
 .player_switch_left_to_right {
     background: url('../../Normal/turn_left-to-right.png');
     background-repeat: no-repeat;
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
+
 /* 
 red player  */
 
@@ -202,14 +245,14 @@ red player  */
     background-size: cover;
     animation: switch 0.6s steps(5) infinite;
 }
-#enemy-count{
+
+#enemy-count {
     color: white;
 }
 
-#enemy-counter{
+#enemy-counter {
     position: absolute;
     top: 20px;
     left: 150px;
     color: white;
 }
-
