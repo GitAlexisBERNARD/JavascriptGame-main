@@ -271,6 +271,7 @@ function updateAttackRangeBar() {
 }
 
 function gameOver() {
+  localStorage.setItem('score', enemyCount);
   window.location.href = 'score.html';
 }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="utf-8">
@@ -8,14 +8,42 @@
     <title>Samurai Chronicles</title>
     <link rel="stylesheet" href="../../css/styles.css">
     <link rel="icon" href="public/icones/logo.svg">
+    <script src="../../pocketbase.umd.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const score = localStorage.getItem('score') || 0;
+            document.getElementById('scoreValue').value = score;
+            document.getElementById('scoreDisplay').textContent = 'Score: ' + score;
+        });
+        const pb = new PocketBase('http://127.0.0.1:8090');
+        async function submitScore() {
+            const name = document.getElementById('playerName').value;
+            const score = document.getElementById('scoreValue').value;
+            const data = {
+                Name: name,
+                score: score
+            };
+            try {
+                const record = await pb.collection('score').create(data);
+                console.log(record);
+            } catch (error) {
+                console.error('Erreur lors de l\'envoi du score:', error);
+            }
+        }
+    </script>
 </head>
 
 <body class="background-main">
     <h1>YOU LOST</h1>
-    <h2 class="text-center">YOUR SCORE</h2>
-    <h3 class="text-center">546</h3>
+    <div class="text-center" id="scoreDisplay">Score: 0</div>
+    <div class="score-form">
+        <input type="text" id="playerName" placeholder="Votre nom" />
+        <input type="hidden" id="scoreValue" />
+        <button onclick="submitScore()">Enregistrer le score</button>
+    </div>
     <div class="mode-wrap">
-                <a href="../../mode.html"><button class="btn-play">CHOOSE MODE</button></a><a href="index.html"><button class="btn-play">TRY AGAIN</button></a>
+        <a href="../../mode.html"><button class="btn-play">CHOOSE MODE</button></a>
+        <a href="index.html"><button class="btn-play">TRY AGAIN</button></a>
         <a href="../../scores.html"><button class="btn-play">SEE SCORES</button></a>
     </div>
 </body>
