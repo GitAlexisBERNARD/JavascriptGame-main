@@ -105,6 +105,16 @@ a {
   margin-top: 50px;
 }
 
+.btn-download button {
+  font-size: var(--body);
+  @media (max-width: 1000px) {
+    font-size: var(--mbody);
+  }
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 75px;
+}
+
 .mode-wrap {
   margin: 0 auto;
   width: fit-content;
